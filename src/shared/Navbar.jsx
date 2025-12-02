@@ -1,15 +1,20 @@
-import React from 'react'
+import { NavLink } from "react-router";
+
 
 const Navbar = () => {
   return (
-    <nav className='bg-black'>
-        <ul className='flex items-center gap-4 text-amber-100'>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
+    <nav className="flex justify-center items-center gap-6 w-full">
+      <NavLink
+        to="/" className={({ isActive }) => isActive ? "text-white font-medium" : "text-yellow-500 font-medium" }>Home 
+      </NavLink>
+      <NavLink 
+        to="/blog" className={({ isActive }) => isActive ? "text-white font-medium" : "text-yellow-500 font-medium"}>Blog
+      </NavLink>
+      <NavLink 
+        to="/about" className={({ isActive }) => isActive ? "text-white font-medium" : "text-yellow-500 font-medium"}>About
+      </NavLink>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
