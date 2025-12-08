@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router'
 import DashboardHeader from '../components/dashboard/DashboardHeader'
+import Sidebar from '../components/dashboard/Sidebar'
 
 
 const DashboardLayout = () => {
@@ -10,13 +11,13 @@ const DashboardLayout = () => {
    <div className="flex min-h-screen">
       {/* বাম পাশের সাইডবার (স্থির থাকবে) */}
       <aside className="w-64 bg-gray-800 text-white">
-        ড্যাশবোর্ড সাইডবার নেভিগেশন
+        <DashboardHeader />
       </aside>
       
       {/* প্রধান কন্টেন্ট এরিয়া */}
       <main className="flex-grow p-2">
         {/* এখানে Header থাকতে পারে */}
-        <DashboardHeader />
+        <Sidebar />
         
         
         {/* 🔥 চাইল্ড রুট কম্পোনেন্ট এখানেই রেন্ডার হবে 🔥 */}

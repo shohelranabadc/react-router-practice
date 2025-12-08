@@ -8,13 +8,14 @@ import About from "./pages/main/About";
 import Posts from "./pages/dashboard/Posts";
 import Settings from "./pages/dashboard/Settings";
 import DashboardHome from "./pages/dashboard/DashboardHome";
+import Users from "./pages/dashboard/Users";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Routes>
 
-        {/* ---------- Frontend Layout ---------- */}
+        {/* ---------- Frontend Main Layout ---------- */}
         <Route element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="blog" element={<Blog />} />
@@ -27,8 +28,8 @@ function App() {
           <Route index element={<DashboardHome />} />
           <Route path="post" element={<Posts />} />
           <Route path="settings" element={<Settings />} />
-          {/* Example */}
-          {/* <Route path="users" element={<Users />} /> */}
+          <Route path="settings" element={<Settings />} />
+          <Route path="users" element={<Users />} />
         </Route>
 
       </Routes>
