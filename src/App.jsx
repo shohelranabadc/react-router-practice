@@ -5,6 +5,9 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Home from "./pages/main/Home";
 import Blog from "./pages/main/Blog";
 import About from "./pages/main/About";
+import Posts from "./pages/dashboard/Posts";
+import Settings from "./pages/dashboard/Settings";
+import DashboardHome from "./pages/dashboard/DashboardHome";
 
 function App() {
   return (
@@ -19,8 +22,11 @@ function App() {
         </Route>
 
         {/* ---------- Dashboard / Backend Layout ---------- */}
+        {/* এখানে dashboard layout হলো parant element এবং পরবর্তী element হলো child element তাই outlet ব্যবহার করতে হবে */}
         <Route path="dashboard" element={<DashboardLayout />}>
-          <Route index element={<div>Dashboard Home</div>} />
+          <Route index element={<DashboardHome />} />
+          <Route path="post" element={<Posts />} />
+          <Route path="settings" element={<Settings />} />
           {/* Example */}
           {/* <Route path="users" element={<Users />} /> */}
         </Route>
