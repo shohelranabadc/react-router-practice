@@ -1,35 +1,53 @@
-import React from 'react'
-import { Outlet } from 'react-router'
-import DashboardHeader from '../components/dashboard/DashboardHeader'
-import Sidebar from '../components/dashboard/Sidebar'
-
+import React, { useState } from "react";
+import { Outlet } from "react-router";
+import DashboardHeader from "../components/dashboard/DashboardHeader";
+import Sidebar from "../components/dashboard/Sidebar";
+import DashboardFooter from "../components/dashboard/DashboardFooter";
 
 const DashboardLayout = () => {
-  return (
-    <>
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-   <div className="flex min-h-screen">
-      {/* বাম পাশের সাইডবার (স্থির থাকবে) */}
-      <aside className="w-64 bg-gray-800 text-white">
-        <DashboardHeader />
+  return (
+    // Root Container
+    <div className="min-h-screen flex bg-gray-100">
+      {/* Sidebar container */}
+      <aside className={`
+          bg-gray-900 text-white 
+          transition-all duration-300 ease-in-out
+          ${isSidebarOpen ? 'w-64' : 'w-0'}
+          overflow-hidden z-40
+        `}>
+
+          <div className="w-64">
+            <Sidebar isSidebarOpen={isSidebarOpen} />
+          </div>
+        
       </aside>
-      
-      {/* প্রধান কন্টেন্ট এরিয়া */}
-      <main className="flex-grow p-2">
-        {/* এখানে Header থাকতে পারে */}
-        <Sidebar />
+
+        {/* content container */}
+      <main className="flex-1 flex flex-col">
+        {/* Header, Sidebar টগল করার ফাংশন পাস করছে */}
+        <header className="sticky top-0 z-30 bg-white shadow">
+          <DashboardHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+        </header>
         
-        
-        {/* 🔥 চাইল্ড রুট কম্পোনেন্ট এখানেই রেন্ডার হবে 🔥 */}
-        <Outlet /> 
-        
+
+        {/* মূল কন্টেন্ট এরিয়া */}
+        {/* ml-64 এবং pt-16 শুধুমাত্র lg (Large) স্ক্রিন থেকে কার্যকর হবে */}
+        <section className="flex-1 p-4 overflow-auto">
+          <Outlet />
+        </section>
+
+        {/* Footer */}
+        <footer 
+          className="bg-white border-t border-gray-200 py-4 px-6 mt-auto"
+          role="contentinfo"
+        >
+          <DashboardFooter />
+        </footer>
       </main>
     </div>
-    
-    
-    </>
-    
-  )
-}
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;
